@@ -1,0 +1,24 @@
+syntax="proto3";
+
+package main;
+
+option go_package="./proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service RecTask {
+  rpc AllPath(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      get: "/*",
+    };
+  }
+  rpc Auth(google.protobuf.Empty) returns (TokenRender) {
+    option (google.api.http) = {
+      get: "/auth"
+    };
+  }
+}
+
+message TokenRender {
+  string token = 1;
+}
